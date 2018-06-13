@@ -37,11 +37,9 @@ class Progress extends React.Component{
         this.setState({current});
     }
     componentDidMount(){
-        readData("http://localhost:8080/steps").then(data=>{
-            const current = this.state.current;
-            data = JSON.parse(data);
-            this.setState({current: current, steps: data});
-        });
+        let data = await readData("http://localhost:8080/steps");
+        data = JSON.parse(data);
+        this.setState({steps:data});
     }
     render(){
         const current = this.state.current;
